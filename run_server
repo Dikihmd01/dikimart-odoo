@@ -1,0 +1,1 @@
+./odoo-bin --addons-path=/home/geekman/src/zupermarket/addons,/home/geekman/src/zupermarket/custome -d zupermart --db_port 5432 --xmlrpc-port=8070 --limit-memory-hard 0 --limit-time-real=10000 -u dikimart
