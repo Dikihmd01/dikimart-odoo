@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <!-- dikimart.barang tree view -->
+    <record id="dikimart_barang_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Barang</field>
+        <field name="model">dikimart.barang</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name" />
+                <field name="harga_beli" />
+                <field name="harga_jual" />
+                <field name="kelompokbarang_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- dikimart.barang form view -->
+    <record id="dikimart_barang_view_form" model="ir.ui.view">
+        <field name="name">Form Barang</field>
+        <field name="model">dikimart.barang</field>
+        <field name="arch" type="xml">
+            <form string="Barang">
+                <sheet>
+                    <group name="Barang" string="Barang">
+                        <!-- Add your fields here -->
+                        <field name="name" />
+                        <field name="harga_beli" />
+                        <field name="harga_jual" />
+                    </group>
+
+                    <group name="Kelompok Barang" string="Kelompok Barang">
+                        <field name="kelompokbarang_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- dikimart.barang action window -->
+    <record id="dikimart_barang_action" model="ir.actions.act_window">
+        <field name="name">Daftar Barang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dikimart.barang</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem
+        id="dikimart_barang_menu_act"
+        name="Daftar Barang"
+        parent="dikimart_barang_menu_categ"
+        action="dikimart_barang_action"
+        sequence="20"/>
+
+</odoo>
