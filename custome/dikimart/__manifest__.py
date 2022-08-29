@@ -29,6 +29,7 @@
         'views/templates.xml',
         'views/menu.xml',
         'views/kelompokbarang_view.xml',
+        'views/barang_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
