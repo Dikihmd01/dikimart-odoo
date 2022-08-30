@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_dikimart_kelompokbarang,access.dikimart.kelompokbarang,model_dikimart_kelompokbarang,,1,1,1,1
 access_dikimart_barang,access.dikimart.barang,model_dikimart_barang,,1,1,1,1
+access_dikimart_person,access.dikimart.person,model_dikimart_person,,1,1,1,1
+access_dikimart_kasir,access.dikimart.kasir,model_dikimart_kasir,,1,1,1,1
+access_dikimart_cleaningservice,access.dikimart.cleaningservice,model_dikimart_cleaningservice,,1,1,1,1
