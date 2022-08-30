@@ -11,12 +11,14 @@
                 <field name="name"/>
                 <field name="kode_kelompok"/>
                 <field name="kode_rak"/>
+                <field name="jml_item" />
+                <field name="daftar" />
             </tree>
         </field>
     </record>
 
     <!-- dikimart.kelompokbarang form view -->
-    <record id="dikimart_kelompokbaranf" model="ir.ui.view">
+    <record id="dikimart_kelompokbarang" model="ir.ui.view">
         <field name="name">dikimart.kelompokbarang.view.form</field>
         <field name="model">dikimart.kelompokbarang</field>
         <field name="arch" type="xml">
@@ -26,6 +28,7 @@
                         <!-- Add your fields here -->
                         <field name="name"/>
                         <field name="kode_kelompok"/>
+                        <field name="jml_item" />
                     </group>
 
                     <group name="Rak" string="Posisi Barang">
