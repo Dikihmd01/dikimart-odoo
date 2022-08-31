@@ -16,7 +16,7 @@
 
     <!-- This Menu Item Must have a parent -->
     <menuitem
-        id="dikimart_cleaningservice_menu_categ"
+        id="dikimart_pegawai_menu_categ"
         name="Pegawai"
         parent="dikimart_menu_root"
         sequence="20"/>

@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- dikimart.kasir tree view -->
-    <record id="dikimart_kasir_view_tree" model="ir.ui.view">
+    <!-- dikimart.kasir inherit tree view -->
+    <record id="dikimart_kasir_view_tree_inherit" model="ir.ui.view">
         <field name="name">Daftar Kasir</field>
         <field name="model">dikimart.kasir</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="dikimart_person_view_tree"/>
         <field name="arch" type="xml">
-            <tree>
-                <!-- Add your fields here -->
-                <field name="name" />
-                <field name="alamat" />
-                <field name="tgl_lahir" />
+            <xpath expr="//field[@name='name']" position="before">
                 <field name="id_kasir" />
-            </tree>
+            </xpath>          
         </field>
     </record>
 
-    <!-- dikimart.kasir form view -->
-    <record id="dikimart_kasir_view_form" model="ir.ui.view">
+    <!-- dikimart.kasir inherit form view -->
+    <record id="dikimart_kasir_view_form_inherir" model="ir.ui.view">
         <field name="name">Form Kasir</field>
         <field name="model">dikimart.kasir</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="dikimart_person_view_form"/>
         <field name="arch" type="xml">
-            <form string="Cleaning Service">
-                <sheet>
-                    <group name="Cleaning Service" string="Cleaning Service">
-                        <!-- Add your fields here -->
-                        <field name="name" />
-                        <field name="alamat" />
-                        <field name="tgl_lahir" />
-                        <field name="id_kasir" />
-                    </group>
-                </sheet>
-            </form>
-        </field>
+            <xpath expr="//form//sheet//group[2]" position="after">
+                <group name="id" string="ID">
+                    <field name="id_kasir" />
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='alamat']" position="attributes">
+               <attribute name="string">Address</attribute>
+            </xpath>          
+        </field> 
     </record>
 
     <!-- dikimart.kasir action window -->
@@ -40,13 +37,14 @@
         <field name="name">Kasir</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">dikimart.kasir</field>
-        <field name="view_mode">tree,form</field>   
+        <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
         id="dikimart_kasir_menu_act"
         name="Kasir"
-        parent="dikimart_cleaningservice_menu_categ"
+        parent="dikimart_pegawai_menu_categ"
         action="dikimart_kasir_action"
         sequence="10"/>
 
