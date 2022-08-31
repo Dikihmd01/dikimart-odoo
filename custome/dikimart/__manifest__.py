@@ -29,6 +29,7 @@
         'views/templates.xml',
         'views/menu.xml',
         'views/kelompokbarang_view.xml',
+        'views/person_view.xml',
         'views/cleaningservice_view.xml',
         'views/kasir_view.xml',
         'views/barang_view.xml',

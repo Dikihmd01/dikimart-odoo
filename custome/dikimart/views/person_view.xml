@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- dikimart.person tree view -->
+    <record id="dikimart_person_view_tree" model="ir.ui.view">
+        <field name="name">dikimart.person.view.tree</field>
+        <field name="model">dikimart.person</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name" />
+                <field name="alamat" />
+                <field name="tgl_lahir" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- dikimart.person form view -->
+    <record id="dikimart_person_view_form" model="ir.ui.view">
+        <field name="name">dikimart.person.view.form</field>
+        <field name="model">dikimart.person</field>
+        <field name="arch" type="xml">
+            <form string="Nama">
+                <sheet>
+                    <group name="nama" string="Nama">
+                        <!-- Add your fields here -->
+                        <field name="name" />
+                    </group>
+                    <group name="data" string="NamDataa">
+                        <!-- Add your fields here -->
+                        <field name="alamat" />
+                        <field name="tgl_lahir" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -37,10 +37,10 @@
 
     <!-- dikimart.kasir action window -->
     <record id="dikimart_kasir_action" model="ir.actions.act_window">
-        <field name="name">Cleanng Service</field>
+        <field name="name">Kasir</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">dikimart.kasir</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form</field>   
     </record>
 
     <menuitem
