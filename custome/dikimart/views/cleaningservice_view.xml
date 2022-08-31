@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- dikimart.cleaningservice tree view -->
+    <record id="dikimart_cleaningservice_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Cleaning Service</field>
+        <field name="model">dikimart.cleaningservice</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name" />
+                <field name="alamat" />
+                <field name="tgl_lahir" />
+                <field name="id_cln" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- dikimart.cleaningservice form view -->
+    <record id="dikimart_cleaningservice_view_form" model="ir.ui.view">
+        <field name="name">Form Cleaning Service</field>
+        <field name="model">dikimart.cleaningservice</field>
+        <field name="arch" type="xml">
+            <form string="Cleaning Service">
+                <sheet>
+                    <group name="Cleaning Service" string="Cleaning Service">
+                        <!-- Add your fields here -->
+                        <field name="name" />
+                        <field name="alamat" />
+                        <field name="tgl_lahir" />
+                        <field name="id_cln" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- dikimart.cleaningservice action window -->
+    <record id="dikimart_cleaningservice_action" model="ir.actions.act_window">
+        <field name="name">Cleanng Service</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dikimart.cleaningservice</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="dikimart_cleaningservice_menu_act"
+        name="Cleaning Service"
+        parent="dikimart_cleaningservice_menu_categ"
+        action="dikimart_cleaningservice_action"
+        sequence="10"/>
+
+</odoo>
