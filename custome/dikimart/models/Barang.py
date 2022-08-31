@@ -10,7 +10,8 @@ class Barang(models.Model):
     harga_jual = fields.Integer(string='Harga Jual', required=True)
     # Comodel adalah menentukkan model mana yang menjadi one-nya
     kelompokbarang_id = fields.Many2one(comodel_name='dikimart.kelompokbarang',
-                                        string='Kelompok Barang')
+                                        string='Kelompok Barang',
+                                        ondelete='cascade')
     
     
     
