@@ -5,3 +5,5 @@ access_dikimart_person,access.dikimart.person,model_dikimart_person,,1,1,1,1
 access_dikimart_kasir,access.dikimart.kasir,model_dikimart_kasir,,1,1,1,1
 access_dikimart_cleaningservice,access.dikimart.cleaningservice,model_dikimart_cleaningservice,,1,1,1,1
 access_dikimart_supplier,access.dikimart.supplier,model_dikimart_supplier,,1,1,1,1
+access_dikimart_penjualan,access.dikimart.penjualan,model_dikimart_penjualan,,1,1,1,1
+access_dikimart_detailpenjualan,access.dikimart.detailpenjualan,model_dikimart_detailpenjualan,,1,1,1,1

@@ -20,5 +20,12 @@
         name="Pegawai"
         parent="dikimart_menu_root"
         sequence="20"/>
+    
+    <!-- This Menu Item Must have a parent -->
+    <menuitem
+        id="dikimart_transaksi_menu_categ"
+        name="Transaksi"
+        parent="dikimart_menu_root"
+        sequence="42"/>
 
 </odoo>
