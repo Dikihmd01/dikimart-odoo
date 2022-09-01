@@ -15,7 +15,7 @@
     </record>
 
     <!-- dikimart.kasir inherit form view -->
-    <record id="dikimart_kasir_view_form_inherir" model="ir.ui.view">
+    <record id="dikimart_kasir_view_form_inherit" model="ir.ui.view">
         <field name="name">Form Kasir</field>
         <field name="model">dikimart.kasir</field>
         <field name="mode">primary</field>
