@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+# from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Barang(models.Model):
@@ -12,7 +13,6 @@ class Barang(models.Model):
     kelompokbarang_id = fields.Many2one(comodel_name='dikimart.kelompokbarang',
                                         string='Kelompok Barang',
                                         ondelete='cascade')
-    supplier_id = fields.Many2many(comodel_name='dikimart.supplier', string='Supplier')
-    
-    
-    
+    supplier_id = fields.Many2many(
+        comodel_name='dikimart.supplier',
+        string='Supplier')

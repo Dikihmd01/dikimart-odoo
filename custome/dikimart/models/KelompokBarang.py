@@ -11,9 +11,9 @@ class KelompokBarang(models.Model):
         ('minuman', 'Minuman'),
         ('mie instan', 'Mie Instan')
     ], string='Nama Kelompok')
-    
+
     kode_kelompok = fields.Char(string='Kode Kelompok')
-    
+
     @api.onchange('name')
     def _onchange_kode_kelompok(self):
         if self.name == 'makanan basah':
@@ -27,20 +27,17 @@ class KelompokBarang(models.Model):
 
     kode_rak = fields.Char(string='Kode Rak')
     barang_ids = fields.One2many(comodel_name='dikimart.barang',
-                                inverse_name='kelompokbarang_id',
-                                string='Daftar Barang')
+                                 inverse_name='kelompokbarang_id',
+                                 string='Daftar Barang')
     jml_item = fields.Char(compute='_compute_jml_item', string='Jml Item')
-    
+
     @api.depends('barang_ids')
     def _compute_jml_item(self):
         for record in self:
-            a = self.env['dikimart.barang'].search([('kelompokbarang_id', '=', record.id)]).mapped('name')
+            a = self.env['dikimart.barang'].search(
+                [('kelompokbarang_id', '=', record.id)]).mapped('name')
             b = len(a)
             record.jml_item = b
             record.daftar = a
-    
+
     daftar = fields.Char(string='Daftar isi')
-    
-    
-    
-    

@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+# from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Person(models.Model):
@@ -24,5 +25,3 @@ class CleaningService(models.Model):
     _description = 'New Description'
 
     id_cln = fields.Char(string='ID Cleaning Service')
-    
-

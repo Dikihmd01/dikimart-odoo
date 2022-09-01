@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+# from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Supp(models.Model):
@@ -8,7 +9,6 @@ class Supp(models.Model):
     name = fields.Char(string='Nama Perushaan')
     alamat = fields.Char(string='Alamat')
     no_telp = fields.Char(string='No. Telepon')
-    barang_id = fields.Many2many(comodel_name='dikimart.barang', string='Barang')
-    
-    
-    
+    barang_id = fields.Many2many(
+        comodel_name='dikimart.barang',
+        string='Barang')

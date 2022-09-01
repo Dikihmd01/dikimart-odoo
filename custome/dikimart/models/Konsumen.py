@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+# from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Konsumen(models.Model):
@@ -7,6 +8,3 @@ class Konsumen(models.Model):
 
     poin = fields.Integer(string='Poin')
     level = fields.Char(string='Level')
-    
-    
-    
