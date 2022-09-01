@@ -17,7 +17,7 @@ class Penjualan(models.Model):
         comodel_name='dikimart.detailpenjualan',
         inverse_name='penjualan_id',
         string='Detail Penjualan')
-    
+
     @api.depends('detailpenjualan_ids')
     def _compute_totalbayar(self):
         for line in self:
@@ -37,7 +37,9 @@ class DetailPenjualan(models.Model):
     barang_id = fields.Many2one(
         comodel_name='dikimart.barang',
         string='List Barang')
-    harga_satuan = fields.Integer(string='Harga Satuan', onchange='_onchange_barang_id')
+    harga_satuan = fields.Integer(
+        string='Harga Satuan',
+        onchange='_onchange_barang_id')
     qty = fields.Integer(string='Quantity')
     subtotal = fields.Integer(compute='_compute_subtotal', string='Subtotal')
 
