@@ -14,6 +14,12 @@ class KelompokBarang(models.Model):
 
     kode_kelompok = fields.Char(string='Kode Kelompok')
 
+    kode_rak = fields.Char(string='Kode Rak')
+    barang_ids = fields.One2many(comodel_name='dikimart.barang',
+                                 inverse_name='kelompokbarang_id',
+                                 string='Daftar Barang')
+    jml_item = fields.Char(compute='_compute_jml_item', string='Jml Item')
+
     @api.onchange('name')
     def _onchange_kode_kelompok(self):
         if self.name == 'makanan basah':
@@ -24,13 +30,7 @@ class KelompokBarang(models.Model):
             self.kode_kelompok = 'MIN01'
         elif self.name == 'mie instan':
             self.kode_kelompok = 'MIE01'
-
-    kode_rak = fields.Char(string='Kode Rak')
-    barang_ids = fields.One2many(comodel_name='dikimart.barang',
-                                 inverse_name='kelompokbarang_id',
-                                 string='Daftar Barang')
-    jml_item = fields.Char(compute='_compute_jml_item', string='Jml Item')
-
+    
     @api.depends('barang_ids')
     def _compute_jml_item(self):
         for record in self:
@@ -41,3 +41,4 @@ class KelompokBarang(models.Model):
             record.daftar = a
 
     daftar = fields.Char(string='Daftar isi')
+    
