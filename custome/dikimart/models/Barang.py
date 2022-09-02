@@ -16,3 +16,5 @@ class Barang(models.Model):
     supplier_id = fields.Many2many(
         comodel_name='dikimart.supplier',
         string='Supplier')
+    stok = fields.Integer(string='Stok')
+    

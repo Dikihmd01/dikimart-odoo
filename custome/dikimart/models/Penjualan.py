@@ -52,3 +52,14 @@ class DetailPenjualan(models.Model):
     def _onchange_barang_id(self):
         if self.barang_id.harga_jual:
             self.harga_satuan = self.barang_id.harga_jual
+    
+    @api.model
+    def create(self, vals):
+        line = super(DetailPenjualan, self).create(vals)
+        if line.qty:
+            # Mendapatkan data berdasarkan ID pada barang_id
+            self.env['dikimart.barang'].search([('id', '=', line.barang_id.id)]).write({
+                'stok': line.barang_id.stok - line.qty
+            })
+
+        return line

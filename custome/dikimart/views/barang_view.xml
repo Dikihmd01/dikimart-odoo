@@ -11,6 +11,7 @@
                 <field name="name" />
                 <field name="harga_beli" />
                 <field name="harga_jual" />
+                <field name="stok" />
                 <field name="kelompokbarang_id" />
                 <field name="supplier_id" />
             </tree>
@@ -29,9 +30,11 @@
                         <field name="name" />
                         <field name="harga_beli" />
                         <field name="harga_jual" />
+                        <field name="stok" />
                     </group>
 
                     <group name="Kelompok Barang" string="Kelompok Barang">
+                        <field name="kelompokbarang_id" />
                         <field name="kelompokbarang_id" />
                     </group>
 
