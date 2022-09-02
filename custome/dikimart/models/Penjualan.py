@@ -25,6 +25,40 @@ class Penjualan(models.Model):
                 [('penjualan_id', '=', line.id)]).mapped('subtotal'))
             line.total_bayar = result
 
+    '''
+    Pemabaalan transaksi dapat menggunakan dua metode
+    1. ondelete
+    2. unlink
+    Jika pembatalan transaksi mengguakan ondelete gagal,
+    bisa menggunakan metode unlink
+    '''
+    @api.ondelete(at_uninstall=False)
+    def __ondelete_penjualan(self):
+        if self.detailpenjualan_ids:
+            penjualan = []
+            for line in self:
+                penjualan = self.env['dikimart.detailpenjualan'].search(
+                    [('penjualan_id', '=', line.id)])
+                print(penjualan)
+
+            for ob in penjualan:
+                print(ob.barang_id.name + ' ' + str(ob.qty))
+                ob.barang_id.stok += ob.qty
+
+    # def unlink(self):
+    #     if self.detailpenjualan_ids:
+    #         penjualan = []
+    #         for line in self:
+    #             penjualan = self.env['dikimart.detailpenjualan'].search(
+    #                 [('penjualan_id', '=', line.id)])
+    #             print(penjualan)
+
+    #         for ob in penjualan:
+    #             print(ob.barang_id.name + ' ' + str(ob.qty))
+    #             ob.barang_id.stok += ob.qty
+
+    #     line = super(Penjualan, self).unlink()
+
 
 class DetailPenjualan(models.Model):
     _name = 'dikimart.detailpenjualan'
@@ -52,14 +86,20 @@ class DetailPenjualan(models.Model):
     def _onchange_barang_id(self):
         if self.barang_id.harga_jual:
             self.harga_satuan = self.barang_id.harga_jual
-    
+
+    '''
+    Ketika transaksi berlangsung, barang yang sudah masuk
+    ke dalam keranjang, maka stok barang akan berkurang
+    sesuai dengan jumlah beli yang masuk ke kerangjang dengan
+    menggunakan fungsi create().
+    '''
     @api.model
     def create(self, vals):
         line = super(DetailPenjualan, self).create(vals)
         if line.qty:
             # Mendapatkan data berdasarkan ID pada barang_id
-            self.env['dikimart.barang'].search([('id', '=', line.barang_id.id)]).write({
-                'stok': line.barang_id.stok - line.qty
-            })
+            self.env['dikimart.barang'].search(
+                [('id', '=', line.barang_id.id)]
+            ).write({'stok': line.barang_id.stok - line.qty})
 
         return line
