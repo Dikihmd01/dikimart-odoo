@@ -61,12 +61,46 @@ class Penjualan(models.Model):
     #     line = super(Penjualan, self).unlink()
 
     '''
+    Fungsi untuk menambahkan data ketika
+    '''
+    def write(self, vals):
+        for line in self:
+            data_asli = self.env['dikimart.detailpenjualan'].search([('penjualan_id', '=', line.id)])
+            print(data_asli)
+
+            for data in data_asli:
+                print(str(data.barang_id.name) + " " + str(data.qty) + ' ' + str(data.barang_id.stok))
+                data.barang_id.stok += data.qty
+        
+        line = super(Penjualan, self).write(vals)
+        
+        for line in self:
+            data_setelah_edit = self.env['dikimart.detailpenjualan'].search([('penjualan_id', '=', line.id)])
+            print(data_asli)
+            print(data_setelah_edit)
+
+            for data_baru in data_setelah_edit:
+                if data_baru in data_asli:
+                    print(data_baru.barang_id.name + " " + str(data_baru.qty) + ' ' + str(data_baru.barang_id.stok))
+                    data_baru.barang_id.stok -= data_baru.qty
+                else:
+                    pass
+
+        return line
+
+    '''
     SQL constraints, strukturnya:
     (<nama constraint>, <constraintnya seperti apa>, <pesan constrain>)
     '''
-    _sql_constraints = [
-        ('no_nota_unik', 'unique (name)', 'Nomor Nota tidak boleh sama!')
-    ]
+    # _sql_constraints = [
+    #     ('no_nota_unik', 'unique (name)', 'Nomor Nota tidak boleh sama!')
+    # ]
+
+    @api.constrains('name')
+    def check_unique_name(self):
+        count = self.search_count([('name', '=', self.name), ('id', '!=', self.id)])
+        if count > 0:
+            raise ValidationError('Nomor nota tidak boleh sama!')
 
 
 class DetailPenjualan(models.Model):
@@ -118,6 +152,11 @@ class DetailPenjualan(models.Model):
         for line in self:
             if line.qty < 1:
                 raise ValidationError('Mau belanja barang {} ini berapa sih...'.format(line.barang_id.name))
-            elif line.barang_id.stok < line.qty:
+            if line.barang_id.stok < line.qty:
                 raise ValidationError('Stok {} tidak mencukup hanya tersedia {}'.format(line.barang_id.name, line.barang_id.stok))
+
+    _sql_constraints = [
+        ('positive_qty', 'CHECK(qty > 0)', 'Jumlah pembelian harus minimal 1, silahkan input dengan benar!'),
+        # ('stok_lt_qty', 'CHECK(barang_id > qty)', 'Stok tidak mencukupi, silahkan input dengan benar!')
+    ]
 
