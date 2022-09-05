@@ -18,3 +18,6 @@ class Barang(models.Model):
         string='Supplier')
     stok = fields.Integer(string='Stok')
     
+    _sql_constraints = [
+        ('stok_tidak_cukup', 'CHECK(stok >= 0)', 'Stok yang tersedia tidak mencukupi.')
+    ]

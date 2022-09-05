@@ -147,13 +147,13 @@ class DetailPenjualan(models.Model):
 
         return line
     
-    @api.constrains('qty')
-    def check_quantity(self):
-        for line in self:
-            if line.qty < 1:
-                raise ValidationError('Mau belanja barang {} ini berapa sih...'.format(line.barang_id.name))
-            if line.barang_id.stok < line.qty:
-                raise ValidationError('Stok {} tidak mencukup hanya tersedia {}'.format(line.barang_id.name, line.barang_id.stok))
+    # @api.constrains('qty')
+    # def check_quantity(self):
+    #     for line in self:
+    #         if line.qty < 1:
+    #             raise ValidationError('Mau belanja barang {} ini berapa sih...'.format(line.barang_id.name))
+    #         if line.barang_id.stok < line.qty:
+    #             raise ValidationError('Stok {} tidak mencukup hanya tersedia {}'.format(line.barang_id.name, line.barang_id.stok))
 
     _sql_constraints = [
         ('positive_qty', 'CHECK(qty > 0)', 'Jumlah pembelian harus minimal 1, silahkan input dengan benar!'),
