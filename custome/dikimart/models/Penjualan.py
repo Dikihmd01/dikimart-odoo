@@ -1,3 +1,4 @@
+from odoo.exceptions import ValidationError, UserError
 from odoo import api, fields, models
 
 
@@ -59,6 +60,14 @@ class Penjualan(models.Model):
 
     #     line = super(Penjualan, self).unlink()
 
+    '''
+    SQL constraints, strukturnya:
+    (<nama constraint>, <constraintnya seperti apa>, <pesan constrain>)
+    '''
+    _sql_constraints = [
+        ('no_nota_unik', 'unique (name)', 'Nomor Nota tidak boleh sama!')
+    ]
+
 
 class DetailPenjualan(models.Model):
     _name = 'dikimart.detailpenjualan'
@@ -103,3 +112,12 @@ class DetailPenjualan(models.Model):
             ).write({'stok': line.barang_id.stok - line.qty})
 
         return line
+    
+    @api.constrains('qty')
+    def check_quantity(self):
+        for line in self:
+            if line.qty < 1:
+                raise ValidationError('Mau belanja barang {} ini berapa sih...'.format(line.barang_id.name))
+            elif line.barang_id.stok < line.qty:
+                raise ValidationError('Stok {} tidak mencukup hanya tersedia {}'.format(line.barang_id.name, line.barang_id.stok))
+
