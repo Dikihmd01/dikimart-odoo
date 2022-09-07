@@ -13,7 +13,7 @@
                 <field name="harga_jual" />
                 <field name="stok" />
                 <field name="kelompokbarang_id" />
-                <field name="supplier_id" />
+                <field name="supplier_id" widget="many2many_tags" />
             </tree>
         </field>
     </record>
