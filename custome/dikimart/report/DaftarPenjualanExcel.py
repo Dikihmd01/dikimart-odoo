@@ -28,7 +28,7 @@ class PartnerXlsx(models.AbstractModel):
             # sheet.write(0, 0, obj.name, bold)
             sheet.write(row, col, obj.name)
             sheet.write(row, col + 1, obj.nama_pembeli)
-            sheet.write(row, col + 2, obj.tgl_penjualan)
+            sheet.write(row, col + 2, str(obj.tgl_penjualan))
             sheet.write(row, col + 3, obj.total_bayar)
 
             # for item in obj.barang_id:
