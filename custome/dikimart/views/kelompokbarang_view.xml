@@ -33,7 +33,10 @@
 
                     <group name="Rak" string="Posisi Barang">
                         <field name="kode_rak"/>
-                        <field name="barang_ids" />
+                    </group>
+
+                    <group name="barang" string="Barang">
+                        <field name="barang_ids" nolabel="1" />
                     </group>
                 </sheet>
             </form>
