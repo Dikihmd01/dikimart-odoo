@@ -24,14 +24,14 @@
         <field name="arch" type="xml">
             <form string="Supplier">
                 <sheet>
-                    <group>
+                    <group string="Supplier">
                         <!-- Add your fields here -->
                         <field name="name" />
                         <field name="alamat" />
                         <field name="no_telp" />
                     </group>
                     <group name="barang" string="Barang">
-                        <field name="barang_id" />
+                        <field name="barang_id" nolabel="1" />
                     </group>
                 </sheet>
             </form>
