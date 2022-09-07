@@ -45,7 +45,13 @@
                     </group>
 
                     <group name="supplier" string="Supplier">
-                        <field name="supplier_id" nolabel="1" />
+                        <field name="supplier_id" nolabel="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="alamat"/>
+                                <field name="barang_id" widget="many2many_tags"/>
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>
