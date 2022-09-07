@@ -37,6 +37,7 @@
         'views/direksi_view.xml',
         'views/penjualan_view.xml',
         'report/report.xml',
+        'wizard/barangdatang_wizard_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -24,6 +24,10 @@
         <field name="model">dikimart.barang</field>
         <field name="arch" type="xml">
             <form string="Barang">
+                <header>
+                    <button string="Input Barang" name="%(dikimart.barang_datang_action_wizzard)d" type="action" class="btn btn-warning"/>
+                </header>
+                
                 <sheet>
                     <group name="Barang" string="Barang">
                         <!-- Add your fields here -->
