@@ -11,8 +11,7 @@
                 <field name="name" />
                 <field name="alamat" />
                 <field name="no_telp" />
-                <field name="barang_id" />
-                <field name="barang_id" />
+                <field name="barang_id" widget="many2many_tags" />
             </tree>
         </field>
     </record>
