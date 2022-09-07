@@ -8,13 +8,18 @@
         <field name="arch" type="xml">
             <form string="Form Kedatangan Barang">
                 <group>
-                    <!-- Add your fields here -->
                     <field name="barang_id" />
                     <field name="jumlah" />
                 </group>
+
                 <footer>
-                    <button name='button_barang_datang' type='object' string='Input Barang' class='btn btn-warning' />
-                    <button string='Cancel' special='cancel' class='btn btn-danger' />
+                    <button name='button_barang_datang'
+                            type='object'
+                            string='Simpan'
+                            class='btn btn-primary' />
+                    <button string='Cancel'
+                            special='cancel'
+                            class='btn btn-secondary' />
                 </footer>
             </form>
         </field>
@@ -31,6 +36,11 @@
     </record>
 
     <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="barang_datang_menu_action_wizzard" name="Input Barang" parent="dikimart_menu_root" action="barang_datang_action_wizzard" sequence="48"/>
+    <menuitem 
+        id="barang_datang_menu_action_wizzard"
+        name="Input Barang"
+        parent="dikimart_menu_root"
+        action="barang_datang_action_wizzard"
+        sequence="48"/>
 
 </odoo>
