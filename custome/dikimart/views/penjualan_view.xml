@@ -22,14 +22,14 @@
         <field name="arch" type="xml">
             <form string="Form Penjualan">
                 <sheet>
-                    <group name="Penjualan">
+                    <group name="Penjualan" string="Transaksi">
                         <field name="name" />
                         <field name="nama_pembeli" />
                         <field name="tgl_penjualan" />
                         <field name="total_bayar" />
                     </group>
                     <group name="Daftar Barang" string="Daftar Barang">
-                        <field name="detailpenjualan_ids">
+                        <field name="detailpenjualan_ids" nolabel="1">
                             <tree editable="bottom">
                                 <field name="barang_id"/>
                                 <field name="harga_satuan"/>
