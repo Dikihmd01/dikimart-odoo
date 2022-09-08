@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- dikimart.supplierbaru form view -->
+    <record id="supplier_baru_view_form_wizzard" model="ir.ui.view">
+        <field name="name">Barang Datang</field>
+        <field name="model">dikimart.supplierbaru</field>
+        <field name="arch" type="xml">
+            <form string="Form Supplier Baru">
+                <group>
+                    <field name="supplier_id" />
+                    <field name="barang_id" />
+                </group>
+
+                <footer>
+                    <button name='button_supplier_baru'
+                            type='object'
+                            string='Simpan'
+                            class='btn btn-primary' />
+                    <button string='Cancel'
+                            special='cancel'
+                            class='btn btn-secondary' />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <!-- dikimart.supplierbaru action window -->
+    <record id="supplier_baru_action_wizzard" model="ir.actions.act_window">
+        <field name="name">Tambah Supplier Baru</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dikimart.supplierbaru</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref='supplier_baru_view_form_wizzard' />
+        <field name="target">new</field>
+    </record>
+
+</odoo>

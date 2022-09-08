@@ -22,6 +22,12 @@
         <field name="model">dikimart.supplier</field>
         <field name="arch" type="xml">
             <form string="Supplier">
+                <header>
+                    <button string="Input Supplier"
+                            name="%(dikimart.supplier_baru_action_wizzard)d"
+                            type="action"
+                            class="btn btn-primary my-3"/>
+                </header>
                 <sheet>
                     <group string="Supplier">
                         <!-- Add your fields here -->

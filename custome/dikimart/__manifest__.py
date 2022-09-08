@@ -39,6 +39,7 @@
         'report/report.xml',
         'report/print_faktur_penjualan.xml',
         'wizard/barangdatang_wizard_view.xml',
+        'wizard/supplierbaru_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
