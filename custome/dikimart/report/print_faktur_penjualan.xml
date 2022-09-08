@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_penjualan_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>Faktur Penjualan</h1>
+                        <div class="row">
+                            <div class="col-4">No. Nota :</div>
+                            <div class="col-8">
+                                <span t-field="docs.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Nama Konsumen :</div>
+                            <div class="col-8">
+                                <span t-field="docs.nama_pembeli" />
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Barang</th>
+                                        <th>Harga</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="docs.detailpenjualan_ids" t-as="ds">
+                                    <tr>
+                                        <td><span t-field="ds.barang_id.name" /></td>
+                                        <td>Rp<span t-field="ds.harga_satuan" /></td>
+                                        <td><span t-field="ds.qty" /></td>
+                                        <td>RP<span t-field="ds.subtotal" /></td>
+                                    </tr>
+                                    </t>
+                                    <tr>
+                                        <th colspan="3">Total Bayar</th>
+                                        <td>Rp<span t-field="docs.total_bayar" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

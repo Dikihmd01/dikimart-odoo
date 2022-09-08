@@ -22,4 +22,14 @@
         <field name="binding_type">report</field>
     </record>
 
+    <record id="report_penjualan_pdf" model="ir.actions.report">
+        <field name="name">Print Faktur</field>
+        <field name="model">dikimart.penjualan</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dikimart.report_penjualan_pdf</field>
+        <field name="report_file">dikimart.report_penjualan_pdf</field>
+        <field name="binding_model_id" ref="model_dikimart_penjualan"/>
+        <field name="binding_type">report</field>
+    </record>
+
 </odoo>
