@@ -8,15 +8,21 @@
                     <div class="page">
                         <h1>Faktur Penjualan</h1>
                         <div class="row">
-                            <div class="col-4">No. Nota :</div>
+                            <div class="col-4">No. Nota:</div>
                             <div class="col-8">
                                 <span t-field="docs.name" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">Nama Konsumen :</div>
+                            <div class="col-4">Nama Konsumen:</div>
                             <div class="col-8">
                                 <span t-field="docs.nama_pembeli" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Tanggal Transaksi:</div>
+                            <div class="col-8">
+                                <span t-field="docs.tgl_penjualan" />
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -26,7 +32,7 @@
                                         <th>Nama Barang</th>
                                         <th>Harga</th>
                                         <th>Quantity</th>
-                                        <th>Total</th>
+                                        <th>Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
