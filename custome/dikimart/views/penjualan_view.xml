@@ -11,6 +11,7 @@
                 <field name="nama_pembeli" />
                 <field name="tgl_penjualan" />
                 <field name="total_bayar" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -21,15 +22,52 @@
         <field name="model">dikimart.penjualan</field>
         <field name="arch" type="xml">
             <form string="Form Penjualan">
+                <header>
+                    <button string="Confirm"
+                        name="action_confirm"
+                        type="object"
+                        class="oe_highlight"
+                        states="draft" />
+                    
+                    <button string="Done"
+                        name="action_done"
+                        type="object"
+                        class="btn btn-success"
+                        states="confirm" />
+                    
+                    <button string="Cancel"
+                        name="action_cancel"
+                        type="object"
+                        class="btn btn-danger"
+                        states="confirm"
+                        confirm="Apakah kamu yakin ingin cancel quotation ini?" />
+                    
+                    <button string="Kembali ke Draft"
+                        name="action_draft"
+                        type="object"
+                        class="oe_highlight"
+                        states="canceled"
+                        confirm="Apakah kamu yakin ingin edit quotation ini?" />
+                    
+                    <field name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,confirm,done,canceled" />
+                
+                </header>
                 <sheet>
                     <group name="Penjualan" string="Transaksi">
-                        <field name="name" />
-                        <field name="nama_pembeli" />
-                        <field name="tgl_penjualan" />
-                        <field name="total_bayar" />
+                        <field name="name"
+                            attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                        <field name="nama_pembeli"
+                            attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                        <field name="tgl_penjualan"
+                            attrs="{'readonly' : [('state', '!=', 'draft')]}" />
+                        <field name="total_bayar"
+                            attrs="{'readonly' : [('state', '!=', 'draft')]}" />
                     </group>
                     <group name="Daftar Barang" string="Daftar Barang">
-                        <field name="detailpenjualan_ids" nolabel="1">
+                        <field name="detailpenjualan_ids" nolabel="1"
+                                attrs="{'readonly' : [('state', '!=', 'draft')]}">
                             <tree editable="bottom">
                                 <field name="barang_id"/>
                                 <field name="harga_satuan"/>

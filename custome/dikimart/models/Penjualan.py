@@ -6,6 +6,13 @@ class Penjualan(models.Model):
     _name = 'dikimart.penjualan'
     _description = 'Penjualan'
 
+    STATE_OPTIONS = [
+        ('draft', 'Draft'),
+        ('confirm', 'Confirm'),
+        ('canceled', 'Canceled'),
+        ('done', 'Done'),
+    ]
+
     name = fields.Char(string='No. Nota')
     nama_pembeli = fields.Char(string='Nama Pembeli')
     tgl_penjualan = fields.Datetime(
@@ -18,6 +25,12 @@ class Penjualan(models.Model):
         comodel_name='dikimart.detailpenjualan',
         inverse_name='penjualan_id',
         string='Detail Penjualan')
+    state = fields.Selection(string='State',
+                            selection=STATE_OPTIONS,
+                            required=True,
+                            readonly=True,
+                            default='draft')
+    
 
     @api.depends('detailpenjualan_ids')
     def _compute_totalbayar(self):
@@ -25,6 +38,26 @@ class Penjualan(models.Model):
             result = sum(self.env['dikimart.detailpenjualan'].search(
                 [('penjualan_id', '=', line.id)]).mapped('subtotal'))
             line.total_bayar = result
+    
+    def action_confirm(self):
+        self.write({
+            'state': 'confirm'
+        })
+    
+    def action_done(self):
+        self.write({
+            'state': 'done'
+        })
+    
+    def action_cancel(self):
+        self.write({
+            'state': 'canceled'
+        })
+    
+    def action_draft(self):
+        self.write({
+            'state': 'draft'
+        })
 
     '''
     Pemabaalan transaksi dapat menggunakan dua metode
@@ -35,16 +68,19 @@ class Penjualan(models.Model):
     '''
     @api.ondelete(at_uninstall=False)
     def __ondelete_penjualan(self):
-        if self.detailpenjualan_ids:
-            penjualan = []
-            for line in self:
-                penjualan = self.env['dikimart.detailpenjualan'].search(
-                    [('penjualan_id', '=', line.id)])
-                print(penjualan)
+        if self.filtered(lambda line: line.state != 'draft'):
+            raise ValidationError('Tidak dapat menghapus jika status bukan draft!')
+        else:
+            if self.detailpenjualan_ids:
+                penjualan = []
+                for line in self:
+                    penjualan = self.env['dikimart.detailpenjualan'].search(
+                        [('penjualan_id', '=', line.id)])
+                    print(penjualan)
 
-            for ob in penjualan:
-                print(ob.barang_id.name + ' ' + str(ob.qty))
-                ob.barang_id.stok += ob.qty
+                for ob in penjualan:
+                    print(ob.barang_id.name + ' ' + str(ob.qty))
+                    ob.barang_id.stok += ob.qty
 
     # def unlink(self):
     #     if self.detailpenjualan_ids:
