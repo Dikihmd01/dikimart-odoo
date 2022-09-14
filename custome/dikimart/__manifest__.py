@@ -40,6 +40,8 @@
         'report/print_faktur_penjualan.xml',
         'wizard/barangdatang_wizard_view.xml',
         'wizard/supplierbaru_view.xml',
+        'wizard/penjualanreport_wizard_view.xml',
+        'wizard/wizard_penjualanreport_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

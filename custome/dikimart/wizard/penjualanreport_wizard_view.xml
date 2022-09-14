@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- dikimart.penjualanreport form view -->
+    <record id="dikimart_penjualanreport_wizard_view_form" model="ir.ui.view">
+        <field name="name">dikimart.penjualanreport.view.form</field>
+        <field name="model">dikimart.penjualanreport</field>
+        <field name="arch" type="xml">
+            <form string="Report Penjualan">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="konsumen_id"/>
+                    </group>
+                    <group>
+                        <field name="dari_tanggal"/>
+                        <field name="ke_tanggal"/>
+                    </group>
+                    <group>
+                        <footer>
+                            <button 
+                                string="Cetak"
+                                name="action_penjualan_report"
+                                type="object"
+                                class="oe_highlight"/>
+                            <button 
+                                special="cancel"
+                                string="Batal"
+                                class="btn btn-danger" />
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- dikimart.penjualanreport action window -->
+    <record id="dikimart_penjualanreport_wizard_action" model="ir.actions.act_window">
+        <field name="name">dikimart.penjualanreport.action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dikimart.penjualanreport</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dikimart_penjualanreport_wizard_view_form" />
+        <field name="target">new</field>
+    </record>
+    <!-- <record id="barang_datang_action_wizzard" model="ir.actions.act_window">
+        <field name="name">Kedatangan Barang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dikimart.barangdatang</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref='barang_datang_view_form_wizzard' />
+        <field name="target">new</field>
+    </record> -->
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem
+        id="dikimart_penjualanreport_wizard_menu_act"
+        name="Laporan Penjualan"
+        parent="dikimart_menu_root"
+        action="dikimart_penjualanreport_wizard_action"
+        sequence="49"/>
+
+</odoo>

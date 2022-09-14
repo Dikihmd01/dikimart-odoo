@@ -1,5 +1,15 @@
 <odoo>
 
+    <record id="wizzard_penjualanreport_pdf" model="ir.actions.report">
+        <field name="name">Print Report</field>
+        <field name="model">dikimart.penjualanreport</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dikimart.wizzard_penjualanreport_pdf_tmp</field>
+        <field name="report_file">dikimart.wizzard_penjualanreport_pdf_tmp</field>
+        <field name="binding_model_id" ref="model_dikimart_penjualanreport"/>
+        <field name="binding_type">report</field>
+    </record>
+
     <!-- Report Supplier -->
     <record id="report_supplier_xlsx" model="ir.actions.report">
         <field name="name">Supplier Excel</field>

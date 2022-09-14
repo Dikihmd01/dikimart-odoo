@@ -14,23 +14,39 @@ class Penjualan(models.Model):
     ]
 
     name = fields.Char(string='No. Nota')
-    nama_pembeli = fields.Char(string='Nama Pembeli')
+    nama_pembeli = fields.Many2one(
+        comodel_name='res.partner',
+        string='Nama Pembeli'
+    )
+    id_member = fields.Char(
+        string='ID Member',
+        compute='_compute_id_member',
+        required=False
+    )
     tgl_penjualan = fields.Datetime(
         string='Tanggal Transaksi',
-        default=fields.Datetime.now())
+        default=fields.Datetime.now()
+    )
     total_bayar = fields.Integer(
         string='Total Pembayaran',
-        compute='_compute_totalbayar')
+        compute='_compute_totalbayar'
+    )
     detailpenjualan_ids = fields.One2many(
         comodel_name='dikimart.detailpenjualan',
         inverse_name='penjualan_id',
-        string='Detail Penjualan')
-    state = fields.Selection(string='State',
-                            selection=STATE_OPTIONS,
-                            required=True,
-                            readonly=True,
-                            default='draft')
+        string='Detail Penjualan'
+    )
+    state = fields.Selection(
+        string='State',
+        selection=STATE_OPTIONS,
+        required=True,
+        readonly=True,
+        default='draft')
     
+    @api.depends('nama_pembeli')
+    def _compute_id_member(self):
+        for line in self:
+            line.id_member = line.nama_pembeli.id_member
 
     @api.depends('detailpenjualan_ids')
     def _compute_totalbayar(self):
@@ -69,7 +85,7 @@ class Penjualan(models.Model):
     @api.ondelete(at_uninstall=False)
     def __ondelete_penjualan(self):
         if self.filtered(lambda line: line.state != 'draft'):
-            raise ValidationError('Tidak dapat menghapus jika status bukan draft!')
+            raise UserError('Tidak dapat menghapus jika status bukan draft!')
         else:
             if self.detailpenjualan_ids:
                 penjualan = []

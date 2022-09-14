@@ -11,6 +11,9 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="poin" />
             </xpath>   
+            <xpath expr="//field[@name='display_name']" position="before">
+                <field name="id_member"/>
+            </xpath>
         </field>
     </record>
 
@@ -22,18 +25,21 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="poin" />
+                <!-- <field name="poin" /> -->
                 <field name="is_konsumen" />
             </xpath>
             <xpath expr="//field[@name='function']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-             <xpath expr="//field[@name='vat']" position="attributes">
-                <attribute name="string">NPWP</attribute>
+            <xpath expr="//field[@name='vat']" position="before">
+                <field name="id_member"/>
             </xpath>
-            <!-- <xpath expr="//field[@name='function']" position="attributes">
+             <xpath expr="//field[@name='vat']" position="attributes">
                 <attribute name="invisible">1</attribute>
-            </xpath>       -->
+            </xpath>
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>      
         </field>
     </record>
 

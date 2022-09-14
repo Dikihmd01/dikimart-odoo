@@ -27,5 +27,11 @@
         name="Transaksi"
         parent="dikimart_menu_root"
         sequence="42"/>
+    
+    <!-- <menuitem
+        id="dikimart_report_menu_categ"
+        name="Report Penjualan"
+        parent="dikimart_menu_root"
+        sequence="42"/> -->
 
 </odoo>
