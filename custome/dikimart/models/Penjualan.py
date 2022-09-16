@@ -16,7 +16,8 @@ class Penjualan(models.Model):
     name = fields.Char(string='No. Nota')
     nama_pembeli = fields.Many2one(
         comodel_name='res.partner',
-        string='Nama Pembeli'
+        string='Nama Pembeli',
+        domain="[('is_konsumen', '=', True)]"
     )
     id_member = fields.Char(
         string='ID Member',

@@ -7,7 +7,9 @@ class SupplierBaru(models.TransientModel):
 
     konsumen_id = fields.Many2one(
         comodel_name='res.partner',
-        string='Konsumen')
+        string='Konsumen',
+        domain="[('is_konsumen', '=', True)]"
+    )
     dari_tanggal = fields.Date(string='Dari Tanggal')
     ke_tanggal = fields.Date(string='Ke Tanggal')
     
